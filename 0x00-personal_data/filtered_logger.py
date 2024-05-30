@@ -59,7 +59,7 @@ class RedactingFormatter(logging.Formatter):
         """
         original_message = super().format(record)
         return filter_datum(self.fields, self.REDACTION,
-            original_message , self.SEPARATOR)
+                            original_message, self.SEPARATOR)
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
