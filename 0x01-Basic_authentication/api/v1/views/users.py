@@ -3,8 +3,8 @@
 Module of Users views
 """
 
-from api.v1.views import app_views
 from flask import abort, jsonify, request
+from api.v1.views import app_views
 from models.user import User
 
 

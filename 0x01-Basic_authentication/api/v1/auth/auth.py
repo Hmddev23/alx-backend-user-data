@@ -1,12 +1,14 @@
-
 #!/usr/bin/env python3
 """
 define the Auth class for handling
 authentication-related functionalities.
 """
 
+from typing import (
+    List,
+    TypeVar
+)
 from flask import request
-from typing import List, TypeVar
 
 
 class Auth:
@@ -23,12 +25,22 @@ class Auth:
         Returns:
             bool: True if authentication is required, False otherwise.
         """
-        if path is None or excluded_paths is None or len(excluded_paths) == 0:
+        if path is None:
             return True
-        if path[-1] != "/":
-            path += "/"
-
-        return path not in excluded_paths
+        elif excluded_paths is None or excluded_paths == []:
+            return True
+        elif path in excluded_paths:
+            return False
+        else:
+            for i in excluded_paths:
+                if i.startswith(path):
+                    return False
+                if path.startswith(i):
+                    return False
+                if i[-1] == "*":
+                    if path.startswith(i[:-1]):
+                        return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """
@@ -40,9 +52,12 @@ class Auth:
         """
         if request is None:
             return None
-        return request.headers.get("Authorization", None)
+        header = request.headers.get('Authorization')
+        if header is None:
+            return None
+        return header
 
-    def current_user(self, request=None) -> TypeVar("User"):
+    def current_user(self, request=None) -> TypeVar('User'):
         """
         placeholder for method to get the current user from the request.
         Args:
