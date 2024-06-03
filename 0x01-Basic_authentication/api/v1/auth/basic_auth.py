@@ -15,7 +15,6 @@ class BasicAuth(Auth):
     BasicAuth class that extends the Auth class
     to handle basic authentication.
     """
-
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         """
@@ -86,7 +85,7 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
-        returns a User instance based on a received request.
+        return a User instance based on a received request
         """
         Auth_header = self.authorization_header(request)
         if Auth_header is not None:

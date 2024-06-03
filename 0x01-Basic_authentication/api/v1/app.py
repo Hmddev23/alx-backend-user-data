@@ -48,11 +48,7 @@ def bef_req():
 @app.errorhandler(404)
 def not_found(error) -> str:
     """
-    Error handler for 404 Not Found error.
-    Args:
-        error: The error object
-    Returns:
-        str: JSON response with error message and status code 404.
+    Not found handler
     """
     return jsonify({"error": "Not found"}), 404
 
@@ -60,11 +56,7 @@ def not_found(error) -> str:
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """
-    Error handler for 401 Unauthorized error.
-    Args:
-        error: The error object
-    Returns:
-        str: JSON response with error message and status code 401.
+    Request unauthorized handler
     """
     return jsonify({"error": "Unauthorized"}), 401
 
@@ -72,11 +64,7 @@ def unauthorized(error) -> str:
 @app.errorhandler(403)
 def forbidden(error) -> str:
     """
-    Error handler for 403 Forbidden error.
-    Args:
-        error: The error object
-    Returns:
-        str: JSON response with error message and status code 403.
+    Request unauthorized handler
     """
     return jsonify({"error": "Forbidden"}), 403
 

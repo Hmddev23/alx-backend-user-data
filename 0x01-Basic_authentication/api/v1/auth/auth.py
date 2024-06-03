@@ -4,11 +4,11 @@ define the Auth class for handling
 authentication-related functionalities.
 """
 
+from flask import request
 from typing import (
     List,
     TypeVar
 )
-from flask import request
 
 
 class Auth:
