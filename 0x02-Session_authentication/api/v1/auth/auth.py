@@ -4,6 +4,7 @@ define the Auth class for handling
 authentication-related functionalities.
 """
 
+import os
 from flask import request
 from typing import (
     List,
@@ -66,3 +67,16 @@ class Auth:
             User: Always returns None for now, to be implemented in subclasses
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        return a cookie from a user request.
+        Args:
+            request : request object.
+        Return:
+            value of _my_session_id cookie from request object.
+        """
+        if request is None:
+            return None
+        session_name = os.getenv('SESSION_NAME')
+        return request.cookies.get(session_name)
